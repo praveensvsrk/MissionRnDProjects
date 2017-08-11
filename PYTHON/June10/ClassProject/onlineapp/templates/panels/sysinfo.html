@@ -1,0 +1,39 @@
+<!--{% load i18n %}-->
+<table style="border">
+    <caption>Memory Stats</caption>
+	<thead>
+	<tr>
+        <th>Total</th>
+        <th>Available</th>
+        <th>Prcent used</th>
+        <th>Used</th>
+        <th>Free</th>
+	</tr>
+	</thead>
+	<tbody>
+	<tr>
+		<td>{{ memory.total }} MB</td>
+		<td>{{ memory.available }} MB</td>
+        <td>{{ memory.percent_used }}</td>
+        <td>{{ memory.used }} MB</td>
+        <td>{{ memory.free }} MB</td>
+	</tr>
+	</tbody>
+</table>
+<table>
+    <caption>Process Stats</caption>
+	<thead>
+	<tr>
+        <th>Process ID</th>
+        <th>Process name</th>
+	</tr>
+	</thead>
+	<tbody>
+	{% for process in processes %}
+        <tr>
+            <td>{{ process.pid }}</td>
+            <td>{{ process.name }}</td>
+        </tr>
+    {% endfor %}
+	</tbody>
+</table>

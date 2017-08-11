@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Colleges</title>
+    <style>
+        table {
+            width: 50%;
+            border: solid thin black;
+        }
+        td {
+            color: blue;
+            text-align: center;
+            padding: 5px;
+        }
+
+        h1 {
+            color: green;
+            font-style: bold;
+            padding: 20px;
+        }
+
+
+    </style>
+</head>
+<body>
+<center>
+    <h1>Participating Colleges</h1>
+    <table border="1">
+        <th>ID</th>
+        <th>Acronym</th>
+        <th>Name of the College</th>
+        <th>Location</th>
+        {% for c in colleges %}
+            <tr>
+                <td><a href="{% url 'details' c.id %}">{{ c.id }}</a></td>
+                <td>{{ c.acronym }}</td>
+                <td>{{ c.name }}</td>
+                <td>{{ c.location }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+</center>
+</body>
+</html>

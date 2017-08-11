@@ -1,0 +1,38 @@
+<div id="${id}" class="item" style="display:none">
+    <table class="item_content">
+        <tbody>
+            <tr>
+                <td valign="top"><b>Description</b></td>
+                <td class="description">${description}</td>
+            </tr>
+            <tr>
+                <td><b>Due Date</b></td>
+                <td class="due_date">${due_date}</td>
+            </tr>
+            <tr>
+                <td><b>Completed</b></td>
+                <td class="completed">
+                    {% verbatim %}
+                    {{if completed}} 
+                    Yes 
+                    {{else}}
+                    No
+                    {{/if}}
+                    {% endverbatim %}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="item_tools" style="text-align: center" width="100%">
+        <tbody>
+            <tr>
+                <td align="left">
+                    <label class="modify_item blue_button">Edit</label>
+                </td>
+                <td align="right">
+                    <label class="delete_item red_button">Delete</label>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

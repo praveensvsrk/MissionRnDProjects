@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<!--
+Create a standard 3 column layout as shown in the image. Note the following:
+
+- use of floats
+- the middle column does not extend either to the left or right, how do you make
+  this happen?
+- don't change the html at all, only add rules for the script section and take
+  care of alignment, font, placement as shown in the images.
+- you may need to figure out how to use parent child selctors etc. read up and
+  use them.
+- note how the middle column resizes when you resize the browser (see the
+  narrow and wide images).
+-->
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <!-- useful in development mode for incremental testing -->
+    <meta http-equiv="cache-control" content="no-cache">
+    <title>Understanding float</title>
+    <style type="text/css">
+        * {
+            border: thin solid sandybrown;
+        }
+
+    </style>
+</head>
+<body>
+
+<div id="outer">
+    <div id="topbar">
+        <h1>  CSS Explained. </h1>
+    </div>
+    <div id="leftnav">
+        <ol>
+            <li> <a href="">Basics</a> </li>
+            <li> <a href="">Linking </a></li>
+            <li> <a href="">Selectors </a></li>
+            <li> <a href="">Box Model </a></li>
+            <li> <a href="">Divs </a></li>
+            <li> <a href="">Position </a></li>
+            <li> <a href="">More....</a></li>
+        </ol>
+        <div id="ads">
+            we can add some google ads here :).
+        </div>
+    </div>
+    <div id="rightnav">
+        <div id="newsletter">
+            <div id="newsletter-header"> Get our free newsletter </div>
+            <div id="newsletter-body"> If you would like to get a montly update
+                about our latest articles on css, please subscribe below.</div>
+            <div id="newletter-form">
+                <input type="email" placeholder="Email..."/>
+                <input type="submit" value="Sign Up"/>
+            </div>
+        </div>
+        <div id="archives">
+            <div id="archive-header"> Archives </div>
+            <ol>
+                <li>November</li>
+                <li>October</li>
+                <li>September</li>
+                <li>August</li>
+            </ol>
+        </div>
+    </div>
+    <div id="content">
+        <h2> CSS </h2>
+<p>
+ Cascading Style Sheets, most of the time abbreviated as CSS, is a stylesheet
+ language used to describe the presentation of a document written in
+ HTML or XML (including various XML languages like SVG or XHTML). </p>
+
+<p>
+    CSS describes how the structured element must be rendered on screen,
+    on paper, in speech, or on other media.
+</p>
+
+<p>
+CSS is one of the core languages of the open web and has a standardized
+    W3C specification. Developed in levels, CSS1 is now obsolete,
+    CSS2.1 is a recommendation, and CSS3, now split into smaller modules,
+    is progressing on the standardization track.
+</p>
+
+        <h3>CSS Tutorial </h3>
+        <p> If you are new to css, we recommend you to start with our tutorial </p>
+        <h3>CSS References </h3>
+        <p> Blah blah </p>
+    </div>
+
+
+</div>
+
+
+</body>
+</html>

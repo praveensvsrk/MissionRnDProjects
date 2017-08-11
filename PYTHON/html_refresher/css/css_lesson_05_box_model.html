@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<!--
+When a html document is rendered every element is treated as a rectangle.
+And each rectangle has content, padding, margin and padding.
+
+This model of rendering is also called the css box model and it is important
+to understand it to make sense of css. All css properties around border, width,
+margin and padding work together to render the final rectangle.
+
+They can be controlled/set to create a wide variety of styles and layouts.
+
+Reference to read: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Box_Model/Introduction_to_the_CSS_box_model
+-->
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Understanding the box model</title>
+    <style type="text/css">
+
+        * {
+            /* top right bottom left */
+            margin : 2px 10px 10px 10px;
+            padding : 5px 10px 5px 10px;
+
+            border : dotted thin #009900;
+
+            /* refers to the width of the content area */
+            width: 300px;
+            /* applies to the content area */
+            background-color: burlywood;
+        }
+
+        /*
+        View this file in browser carefully observe the impact
+        of the properties given above. I recommend that you spend atleast 15
+        minutes on this page checking each and every element rectangle using
+        firebug and ruler and how it relates to the siblings and parent
+        rectangles. This is important :).
+
+        You can find more properties and documentation that apply to boxes at
+        the url given above.
+
+        Now add new rules to override the default rules so that the output is
+        as shown in the lesson image.
+        */
+        html {
+            border : dashed thick brown;
+            background-color : blue;
+        }
+
+        body {
+            background-color : green;
+
+        }
+
+        h2 {
+            border : solid thick cyan;
+            background-color : lightgrey;
+        }
+
+        .lotrpara {
+            background-color : lightgreen;
+            border : solid thin red;
+            width: 400px;
+        }
+
+        ol {
+            background-color : purple;
+            border : solid thin red;
+            width: 140px;
+        }
+
+        ol li {
+            background-color: orange;
+            list-style: circle;
+            list-style-position: inside;
+            text-decoration: underline;
+            border : solid thin red;
+        }
+    </style>
+</head>
+<body>
+<h2> Lord of the Rings </h2>
+<p class="lotrpara">
+    The Lord of the Rings is a film series consisting of three high fantasy
+    adventure films directed by Peter Jackson. They are based on the novel
+    The Lord of the Rings by J. R. R. Tolkien. The films are:
+</p>
+
+<ol>
+    <li>The Fellowship of the Ring (2001)</li>
+    <li>The Two Towers (2002)</li>
+    <li>The Return of the King (2003)</li>
+</ol>
+
+<p class="lotrpara">
+Considered to be one of the biggest and most ambitious film projects ever
+    undertaken, with an overall budget of $281 million (some sources say $310
+    million-$330 million),[3] the entire project took eight years, with the filming
+    for all three films done simultaneously and entirely in New Zealand,
+    Jackson's native country.[4] Each film in the series also had special
+    extended editions released on DVD a year after their respective theatrical
+    releases. While the films follow the book's general storyline, they do omit
+    some of the novel's plot elements and include some additions to and
+    deviations from the source material.
+</p>
+
+</body>
+</html>

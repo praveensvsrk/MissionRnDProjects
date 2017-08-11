@@ -1,0 +1,241 @@
+html{
+    font-family: 'Raleway', sans-serif;
+}
+.todo_list {
+    background-color: #DB9E36;
+    padding: 25px;
+    background: #DB9E36; 
+    background: linear-gradient(180deg, #DB9E36, #e29b32);
+    width: 50%;
+    min-width: 250px;
+    border-radius: 3px;
+    margin-bottom: 32px;
+    text-align: left;
+}
+.item {
+    width: 100%;
+    min-width: 200px;
+    background-color: #FFFAD5;
+    border-radius: 5px;
+    text-align: left;
+    box-shadow: 0px 5px 5px rgba(0,0,0,.2);
+}
+
+.medium {
+    font-size: 20px;
+}
+
+.large {
+    font-size: 28px;
+}
+
+.item:hover {
+    border-color: red;
+    /*background-color: #FFD34E;*/
+}
+
+ul {
+    list-style: none;
+    padding-top: 20px;
+}
+
+.delete_btn {
+    float: right;
+    font-size: 16px;
+    outline: none;
+    background-color: #EA4335;
+    border: solid thin darkred;
+    border-radius: 2px;
+    transition: background-color .25s linear;
+}
+
+.delete_btn:hover {
+    border-color: darkmagenta;
+    background-color: #BD4932;
+}
+
+.header {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    background-color: #BD4932;
+    margin-bottom: 32px;
+    padding: 20px 0px 20px 0px;
+    min-width: 300px;
+    box-shadow: 0px 5px 5px rgba(0,0,0,.4)
+}
+
+body{
+    margin: 0px;
+    background: #FFFAD5; 
+    background: linear-gradient(150deg, #FFFAD5, white);
+
+}
+
+table.item_tools {
+    border-spacing: 16px;
+    background-color: #fff399; 
+}
+table.item_content {
+    border-spacing: 8px;
+    margin: 12px;
+    padding-top: 16px;
+}
+
+input#search_bar{
+    padding: 10px;
+    width: 35%;
+    border-radius: 5px;
+    min-width: 200px;
+    border: solid thin antiquewhite;
+    transition: box-shadow 250ms ease-in-out;
+}
+
+input#search_bar:focus {
+    outline: none;
+    box-shadow: 0px 5px 5px rgba(0,0,0,.4)
+}
+
+.red_button {
+    background-color: #EA4335;
+    padding: 6px 20px 6px 20px;
+    border-radius: 5px;
+    border-bottom: solid thin red;
+    color: white;
+    box-shadow: 0px 5px 5px rgba(0,0,0,.3);
+    transition: box-shadow 250ms ease-in-out, border-bottom-color 250ms ease-in-out; 
+}
+
+.blue_button {
+    background-color: lightblue;
+    padding: 6px 20px 6px 20px;
+    border-radius: 5px;
+    border-bottom: solid thin #4285F4;
+    box-shadow: 0px 5px 5px rgba(0,0,0,.3);
+    transition: box-shadow 250ms ease-in-out, border-bottom-color 250ms ease-in-out;
+}
+
+.red_button:hover {
+    box-shadow: 0px 0px 0px rgba(0,0,0,0);
+    border-bottom-color: transparent;
+}
+
+.blue_button:hover {
+    box-shadow: 0px 0px 0px rgba(0,0,0,0);
+    border-bottom-color: transparent;
+}
+
+.add_item {
+    margin-top: 20px;
+    font-size: 18px;
+    width: fit-content;
+    color: rgba(0,0,0,0.6);
+    text-shadow: 0px 0px gray;
+    transition: color 250ms ease-in-out, text-shadow 250ms ease-in-out; 
+}
+
+.add_item:hover {
+    color: black;
+    text-shadow: 0px 1px black;
+}
+
+label.log_btn {
+    padding:10px 25px 10px 25px; 
+    background-color:#DB9E36;
+    float: inherit;
+}
+
+label.log_btn:hover {
+    background-color: #FFF399;
+}
+
+.login_form_div_inner {
+    margin-top: 38px;
+    background-color: white;
+    padding: 16px;
+    box-shadow: 4px 4px 4px rgba(0,0,0,0.4)      ;
+}
+
+.container {
+    padding-top: 125px;
+}
+
+.login_form_div {
+    position: absolute; 
+    float: right; 
+    right: 0%;
+    top: 0%;
+    margin-top: 38px;
+}
+
+.text_field {
+    padding: 10px;
+    border-radius: 5px;
+    border: solid 0.6px antiquewhite;
+    border-bottom: solid thin lightblue;
+    transition: border-color 200ms ease-in-out;
+}
+
+.text_field:focus {
+    outline: none;
+    border-color: lightblue;
+}
+
+.text_area {
+    padding: 10px;
+    border-radius: 5px;
+    border: solid 0.6px antiquewhite;
+    border-bottom: solid thin lightblue;
+    width: 80%;
+    max-width: 300px;
+    max-height: 150px;
+    height: 50px;
+    transition: border-color 200ms ease-in-out;
+}
+
+.text_area:focus {
+    outline: none;
+    border-color: lightblue;
+}
+
+.loading_div {
+    position: absolute;
+    top: 50%;
+    left: 50%;  
+    transform: translate(-50%, 0); 
+    font-size: 32px;
+}
+
+.nav_list_wrapper {
+    height:auto;
+    width:auto;
+    padding-right: 24px;
+    background-color: #BD4932;
+    position: fixed;
+    border-radius: 2px;
+    top: 114px;
+    left: 32px;
+}
+
+.nav_link {
+    text-decoration: none;
+    color: white;
+}
+
+.site_logo {
+    position:absolute;
+    top:24px;
+    left:48px;
+    text-shadow: 0px 1px darkgray;
+}
+
+.add_list {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+}
+
+.create_list {
+    width:fit-content; 
+    margin-top: 24px;
+}

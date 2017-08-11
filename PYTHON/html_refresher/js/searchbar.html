@@ -1,0 +1,128 @@
+<html>
+<head>
+
+    <style>
+        input, #suggest_box {
+            padding: 10px 3px 10px 3px;
+            margin: 20px 20px 0px 40px;
+            width:60%
+        }
+
+        ul {
+            list-style: none;
+            padding: inherit;
+            margin: 0px;
+        }
+
+        .padding{
+            padding: 10px 5px 10px 20px;
+        }
+
+        #suggest_box {
+            border: solid thin grey;
+            margin-top: 0px;
+            padding:0px;
+        }
+
+
+        .highlight {
+            background-color: lightgrey;
+        }
+
+        ul li:hover {
+
+        }
+
+    </style>
+
+</head>
+<body>
+    <input id="searchBox" type="text" oninput="populateList()" onkeydown="func(event, this)"/>
+    <div id="suggest_box">
+        <ul>
+            <li style="display:none" id="0" class="padding " onmouseover="highlightIt(this.id)"></li>
+            <li style="display:none" id="1" class="padding " onmouseover="highlightIt(this.id)"></li>
+            <li style="display:none" id="2" class="padding " onmouseover="highlightIt(this.id)"></li>
+            <li style="display:none" id="3" class="padding " onmouseover="highlightIt(this.id)"></li>
+        </ul>
+    </div>
+</body>
+<script>
+    index = -1;
+    count = 4;
+    function func(e){
+        console.log(e.keyCode)
+        switch(e.keyCode){
+            case 38:
+                console.log("up");
+                if(index <= 0)
+                    index = count -1;
+                else
+                    index = (index - 1)%count;
+                highlightIt(index);
+                break;
+            case 40:
+                console.log("down");
+                index ++;
+                highlightIt((index)%count);
+                break;
+        }
+    }
+
+    dict = ['merc hyd', 'mercury', 'ma', 'hello', 'bmw', 'merc pune', 'blah'];
+
+    function getSuggestions(prefix) {
+        if(!prefix)
+            return [];
+        suggestions = []
+        for(var i = 0; i < dict.length; ++i) {
+            if(dict[i].startsWith(prefix))
+                suggestions.push(dict[i]);
+        }
+        return suggestions;
+    }
+
+    function populateList(){
+        string = document.getElementById('searchBox').value;
+        split_index = string.length;
+        suggestions = getSuggestions(string);
+        count = suggestions.length;
+        console.log(string)
+        console.log(suggestions);
+        if(count > 4)
+            count = 4
+        var i =0;
+        for(i; i<count; i++){
+            item = document.getElementById(i)
+            var str = suggestions[i].slice(0, split_index);
+            var bold_str = suggestions[i].slice(split_index, suggestions[i].length);
+            item.innerHTML = str + "<b>" + bold_str + "</b>";
+            item.style.display = "block";
+            item.classList.remove("highlight");
+        }
+        for(i; i<4; i++){
+            item = document.getElementById(i)
+            item.style.display = "none";
+        }
+
+        index = -1;
+
+    }
+
+    function highlightIt(id){
+        console.log(id);
+        index = id;
+        for(var i=0; i<count; i++){
+            var element = document.getElementById(i);
+            if(id == i){
+                element.classList.add("highlight");
+            }
+            else
+                element.classList.remove("highlight");
+
+        }
+    }
+</script>
+
+
+</html>

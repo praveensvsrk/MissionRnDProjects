@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+
+<!--
+ This lesson deals with styling lists. Till now you have seen only list of
+ items arranged vertically in some content. But you can take a more structural
+ view of lists and then you can see that even menu items, navigation bar items
+ etc are all lists.
+
+ CSS enables you to style them in many interesting ways to create interesting
+ effects to the end user
+
+-->
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <!-- useful in development mode for incremental testing -->
+    <meta http-equiv="cache-control" content="no-cache">
+    <title>Understanding list styles</title>
+    <style type="text/css">
+
+        * {
+            border: solid thin sandybrown;
+        }
+
+        .listbox {
+            border: solid thick lightblue;
+            width: 100px;
+            float: left;
+            margin: 5px 5px;
+        }
+
+        #list1 {
+            /* default list */
+        }
+
+        /* for list2 to list5, apply the list-style and relevant properties to
+        make them look as shown in the image */
+        #list2 {
+        }
+
+        #list3 {
+        }
+
+        #list4 {
+        }
+
+        #list5 {
+        }
+
+        /*
+        the list elements should be green and when you hover it should grown to
+        twice the default font size - look up the em units for font size
+        */
+
+        #list5 li {
+        }
+
+        /*
+        note that we use can use css to apply special styles when you hover over an
+        element. This allows for some level of responsiveness to user action in
+        the browser by applying styles that depend on the state of the element.
+
+        These states are exposed as psuedo classes (like hover) and you can read
+        and experiment all the available ones at
+        http://www.w3schools.com/css/css_pseudo_classes.asp
+        */
+        #list5 li:hover {
+        }
+
+        .cleardiv {
+            clear: both;
+        }
+
+
+</style>
+</head>
+<body>
+    <ol class="listbox" id="list1">
+        <li>one</li>
+        <li>two</li>
+        <li>three</li>
+    </ol>
+
+    <ol class="listbox" id="list2">
+        <li>one</li>
+        <li>two</li>
+        <li>three</li>
+    </ol>
+
+    <ol class="listbox" id="list3">
+        <li>one</li>
+        <li>two</li>
+        <li>three</li>
+    </ol>
+
+    <ol class="listbox" id="list4">
+        <li>one</li>
+        <li>two</li>
+        <li>three</li>
+    </ol>
+
+    <div class="cleardiv"></div>
+    <h3>Making lists interactive on hover </h3>
+    <ol class="listbox" id="list5">
+        <li>one</li>
+        <li>two</li>
+        <li>three</li>
+    </ol>
+
+</body>
+</html>

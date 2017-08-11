@@ -1,0 +1,81 @@
+
+<html>
+    <head><title>Embedding stuff in a html page</title></head>
+    <body>
+        <div>
+            <h2>Original image resized by browser</h2>
+            <hr>
+            <h4>After resizing</h4>
+            <img src="../images/ladybug.jpg" width="120px" height="90px">
+            <hr>
+            <h4>After resizing</h4>
+            <img src="../images/ladybug.jpg" width="120px" height="90px">
+        </div>
+        <div>
+            <h2>Embedding videos in a html page</h2>
+            <h4>Tiger in the zoo!</h4>
+            <video width="320" height="240" controls>
+              <source src="../videos/tiger.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+            <h4>Lessons from an ad man!</h4>
+            <div style="max-width:640">
+                <div style="position:relative;height:0;padding-bottom:56.25%">
+                    <iframe src="https://embed.ted.com/talks/rory_sutherland_life_lessons_from_an_ad_man"
+                            width="640" height="360" style="position:absolute;left:0;top:0;width:100%;height:100%"
+                            frameborder="0" scrolling="no" allowfullscreen>
+
+                    </iframe>
+                </div>
+            </div>
+        </div>
+
+    </body>
+
+</html>
+
+
+<!--we will just focus on 2 things in this lesson-->
+  <!-- - embedding images and video-->
+  <!-- - using iframes-->
+
+
+
+
+
+
+
+
+<!--You have a images/ladybug.jpg file that you have to use for the exercises below.-->
+<!--Q1: What are the dimensions of that image?-->
+<!--Q2:-->
+<!--1. Use the orginal image but make the browser display it as 120x90 pixels-->
+<!--2. Resize it to images/ladybug-120-90.jpg (120x90 pixels) and use it to display the same again.-->
+<!--3. If the browser can resize the image, why bother creating smaller versions of the images? Hint: compare sizes.-->
+
+<!--Imagine what would happen if you display the original images in a gallery of products.-->
+
+<!--How to create the thumbnail.-->
+
+<!--1. Create the smaller versions using ms paint at first.-->
+<!--2. Use the PIL library and write a python script to do the same :-).-->
+
+
+<!--Original image resized by browser-->
+ <!---->
+
+<!--Thumbnail image generated from original-->
+
+ <!--Embed videos in a html page -->
+ <!--Tiger in the zoo!-->
+
+
+
+<!--Lessons from an ad man! (Iframe version) -->
+
+<!--Using an iframe, embed this video from ted into this page:-->
+<!--http://www.ted.com/talks/rory_sutherland_life_lessons_from_an_ad_man?language=en-->
+
+<!--Hint: most websites enable you to generate the iframe code in their "share bar"-->
+
+

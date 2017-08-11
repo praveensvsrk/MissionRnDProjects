@@ -1,0 +1,40 @@
+<div id="${id}" class="item" style="display:none">
+    <form method="post">
+        <table class="item_content">
+            <tbody>
+                <tr>
+                    <td valign="top"><b>Description</b></td>
+                    <td><textarea class="description text_area">${description}</textarea></td>
+                </tr>
+                <tr>
+                    <td><b>Due Date</b></td>
+                    <td><input type="date" class="due_date text_field" value="${due_date}"/></td>
+                </tr>
+                {% verbatim %}
+                {{if completed != "None"}}
+                <tr>
+                    <td><b>Completed</b></td>
+                    <td><input class="check_complete" type="checkbox" 
+                        {{if completed == 'True'}} 
+                        checked 
+                        {{/if}}
+                    /></td>
+                </tr>
+                {{/if}}
+                {% endverbatim %}
+            </tbody>
+        </table>
+    </form>
+    <table class="item_tools" style="text-align: center" width="100%">
+        <tbody>
+            <tr>
+                <td align="left">
+                    <label class="blue_button save">Save</label>
+                </td>
+                <td align="right">
+                    <label class="blue_button discard">Discard</label>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<!--
+Floats is another very useful concept in css. You can float an element (usually
+a div) and the 'content' (not margins and borders) below it flow around it
+without hiding behind it.
+
+This is useful in creating flexible layouts which respond well to browser
+resizing which you cannot do with fixed width position.
+
+float left -> float the div to the left of the screen (if there is another float
+in the left already then it stacks next to it).
+
+float right -> float the div to the right of the screen.
+
+You use the clear property to move content down any floats to the left or right
+or both. Ignore the overflow property for now.
+
+References:
+http://www.w3schools.com/css/css_float.asp
+https://css-tricks.com/all-about-floats/
+-->
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <!-- useful in development mode for incremental testing -->
+    <meta http-equiv="cache-control" content="no-cache">
+    <title>Understanding float</title>
+    <style type="text/css">
+        * {
+            border: thin solid sandybrown;
+        }
+
+        div {
+            width: 100px;
+            height: 100px;
+            padding: 10px;
+            margin: 10px;
+            opacity: 0.5; /* to be able to see the boundaries behind the floats */
+        }
+
+        /*
+        Create new styles and modify existing styles to create the layout
+        as shown in the image.
+        */
+
+        #red {
+            background-color: red;
+        }
+
+        #green {
+            background-color: green;
+            clear: right;
+        }
+
+        #purple {
+            height: 200px;
+            background-color: purple;
+        }
+
+        #blue {
+            background-color: blue;
+        }
+
+        /* you will need to create an empty div with this class for this exercise */
+        .clearright {
+            /* add properties */
+        }
+    </style>
+</head>
+<body>
+    <p> This is some content above the red div </p>
+    <div id="red">
+        This is some content in the red div.
+    </div>
+    <p> This is some content below the red div in the document but it will appear
+        to the right of the float as floats are removed from the normal flow of
+        box placement. When the text content is being placed floats are considered
+        and text flows around them.
+    </p>
+    <p> This is some content above the green div. By default it will continue to
+    flow as if the floats don't exist from a positioning perspective. </p>
+    <div id="green">
+        This is some content in the green div.
+    </div>
+    <p> This is some content below the green div. Note that while the content
+    flows around the floats, the boundaries of the paragraph in box model do not
+        change. Check this out in firebug for sure or you will miss an important
+    point.</p>
+
+    <div class="clearright"></div>
+    <p> This is some content above the purple div. To start below any previous
+        floats you need to use the clear property. You usually do it by adding
+        an empty div and settings its properties before this paragraph. </p>
+
+    <div id="purple" >
+        This is some content in the purple div.
+    </div>
+    <p> This is some content below the purple div</p>
+
+    <p> This is some content above the blue div </p>
+    <div id="blue">
+        This is some content in the blue div.
+    </div>
+    <p> This is some content below the blue div</p>
+</body>
+</html>

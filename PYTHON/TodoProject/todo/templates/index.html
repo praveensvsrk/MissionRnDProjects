@@ -1,0 +1,392 @@
+{% load static %}
+<!DOCTYPE HTML>
+<!-- Author: Praveen SVSRK -->
+<html>
+    <head>
+        <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+        <link type="text/css" rel="stylesheet" href="{% static "style.css" %}"/>
+    </head>
+    <body> 
+        <div class="header">
+            <div class="site_logo large"><b>List on!</b></div>
+            <input id="search_bar" placeholder="Search" type="text" />
+            <div class="login_form_div">
+                <label class="log_btn" id="login_button_content" style="display:none">Login</label>
+                <label class="log_btn" id="logout_button_content" style="display:none">Logout</label>
+                <div class="login_form_div_inner" style="display:none">
+                    <form method="post" name="login_form" class="login_form">
+                        <table style="border-spacing: 12px" width="100%">
+                            <tr>
+                                <td>User name:</td>
+                                <td><input class="text_field" type="text" name="username"/></td>
+                            </tr>
+                            <tr>
+                                <td>Password:</td>
+                                <td><input class="text_field" type="password" name="password"/></td>
+                            </tr>
+                            <tr>
+                                <td colspan=2 align="center">
+                                    <span onclick="authenticate(document.forms['login_form'])" class="blue_button" style="width: fit-content">Submit</span>
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="nav_list_wrapper" style="display:none">
+            <label style="min-height: 50px; position:relative; top: 20px; left:10px; text-shadow:0px 1px darkgray" 
+            class="medium">Navigate Lists</label>
+            <ul id="nav_list">
+            </ul>
+        </div>
+
+        <center>
+        <div class="loading_div" style="display:none">LOADING...</div>
+        <div class="container" style="display:none">
+            <div class="todo_lists">
+                
+            </div>
+        </div>
+        </center>
+
+        <div class="add_list blue_button" style="display: none">New List</div>
+    </body>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="http://ajax.microsoft.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js"></script>
+    <script>
+        function initTemplates(callback){
+            $.get('list_template.html', function(markup){
+                list_template = markup;
+                $.get('items_template.html', function(markup){
+                    item_template = markup;
+                    $.get('item_form_template.html', function(markup){
+                        item_form_template = markup;
+                        $.get('list_form_template.html', function(markup){
+                            list_form_template = markup;
+                            $.get('legend_template.html', function(markup){
+                                legend_template = markup;
+                                callback()
+                            })
+                        })
+                    })
+                })
+            })
+        }
+
+        function auto_login(){
+            $('.loading_div').show();
+            $('.login_form_div_inner').fadeOut(400);
+            var success = load_user_data({"token": 
+            document.cookie.replace(/(?:(?:^|.*;\s*)Authorization\s*\=\s*([^;]*).*$)|^.*$/, "$1")})
+        }
+        
+        function authenticate(form) {
+            $('.loading_div').show();
+            $('.login_form_div_inner').fadeOut(400);
+            var login_form_data = $('.login_form').serialize()
+            login_form_data = login_form_data.split('&')
+            login_data = {};
+            for(i in login_form_data){
+                var split = login_form_data[i].split('=');
+                login_data[decodeURIComponent(split[0])] = decodeURIComponent(split[1]);
+            }
+            load_initial_data(login_data)
+        }
+
+        function load_user_data(data) {
+            token = data.token
+            document.cookie = "Authorization=" + token
+            $.ajax({
+                accepts: {
+                    mycustomtype: 'application/json'
+                },
+                url: 'http://localhost:8000/todo/api/lists/',
+                beforeSend: function (xhr) {   //Include the bearer token in header
+                    xhr.setRequestHeader("Authorization", 'JWT '+ 
+                    document.cookie.replace(/(?:(?:^|.*;\s*)Authorization\s*\=\s*([^;]*).*$)|^.*$/, "$1"));
+                },
+                dataType: 'json',
+                success: function(data) { //success function on getting lists
+                    $('.nav_list_wrapper').fadeIn(400);
+                    $('.add_list').fadeIn(400)
+                    $(this).html('LOADING...')
+                    $('.loading_div').fadeOut(400, function(){
+                        $('#login_button_content').fadeOut(400, function(){
+                            $('#logout_button_content').fadeIn(400)
+                        })
+                        $('.container').show()    
+                        $.each(data, function(index, list){
+                            $.tmpl(list_template, data[index]).appendTo( ".todo_lists" ).fadeIn(400);
+                            $.tmpl(legend_template, data[index]).appendTo("#nav_list").fadeIn(400);
+                            var list_id = "#" + data[index].id
+                            $($.tmpl(item_template, data[index].items)).insertBefore($(list_id).find('.add_item')).fadeIn(400);
+                        });
+                    })
+                },
+                error: function(data){
+                    $('.loading_div').fadeOut(400, function(){
+                        $('.loading_div').html("Please login").fadeIn(400, function(){
+                            $('#login_button_content').fadeIn(400)
+                        })
+                    });
+                }
+            });
+            
+        }
+
+        function load_initial_data(login_data){
+            $.ajax({
+                accepts: {
+                    mycustomtype: 'application/json'
+                },
+                url: 'http://localhost:8000/todo/api-token-auth/',
+                type: 'POST',
+                data: login_data,
+                dataType: 'json',
+                success: function(data){
+                    load_user_data(data)
+                },
+                error: function(data){
+                    $('.loading_div').html("Please try again")
+                }
+            });
+        }
+
+        $(document).ready(function(){
+            list_template = undefined
+            item_template = undefined
+            item_form_template = undefined
+            list_form_template = undefined
+            legend_template = undefined
+            login_data = undefined
+            token = undefined
+
+            initTemplates(auto_login);
+
+            $("body").on('click', '.nav_link', function(event) {
+                event.preventDefault();
+                var list_id = $(this).attr('href')
+                console.log(list_id)
+                $('html, body').animate({
+                    scrollTop: $(list_id).position().top
+                }, 800, function(){
+                    window.location.hash = list_id;
+                });
+            });
+            
+            $('body').on('click', '.delete_item', function(){
+                var item = $(this).parents().eq(4)
+                var id = item.attr('id')
+                $.ajax({
+                    url:"/todo/api/items/" + id,
+                    type: 'DELETE',
+                    beforeSend: function (xhr) {   //Include the bearer token in header
+                        xhr.setRequestHeader("Authorization", 'JWT '+ 
+                        document.cookie.replace(/(?:(?:^|.*;\s*)Authorization\s*\=\s*([^;]*).*$)|^.*$/, "$1"))
+                    },
+                    success: function(data){
+                        $(item).remove()
+                    }
+                })
+            })
+
+            $('body').on('click', '.delete_btn', function(){
+                var list = $(this).parent()
+                if($(list).hasClass("new_list")){
+                    $(list).remove()
+                    return
+                }
+                var id = list.attr('id')
+                $.ajax({
+                    url:"/todo/api/lists/" + id,
+                    type: 'DELETE',
+                    beforeSend: function (xhr) {   //Include the bearer token in header
+                        xhr.setRequestHeader("Authorization", 'JWT '+ 
+                        document.cookie.replace(/(?:(?:^|.*;\s*)Authorization\s*\=\s*([^;]*).*$)|^.*$/, "$1"))
+                    },
+                    success: function(data){
+                        $(list).remove()
+                        $("#nav_list").find("#nav_" + id).fadeOut(400, function(){
+                            $(this).remove()
+                        })
+                    }
+                })
+            })
+
+            $('#login_button_content').on('click', function(){
+                if($('.login_form_div_inner').is(':visible')){
+                    $('.login_form_div_inner').fadeOut(400)
+                }
+                else {
+                    $('.login_form_div_inner').fadeIn(400)
+                }
+                
+            })
+
+            $('#logout_button_content').on('click', function(){
+                $('.container').fadeOut(400, function(){
+                    $('.todo_lists').empty();
+                })
+                $('.nav_list_wrapper').fadeOut(400, function(){
+                    $('#nav_list').empty();
+                })
+                $(this).fadeOut(400, function(){
+                    $('#login_button_content').fadeIn(400)
+                })
+                document.cookie = 'Authorization=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+                
+            })
+
+            $('#search_bar').keyup(function(){
+                var text = $('#search_bar').val()
+                filter_lists($.trim(text))
+            });
+            
+            $('body').on('click', '.modify_item', function(){
+                var item = $(this).parents().eq(4)
+                var prev = $(item).prev();
+                var cur_id = $(item).attr('id')
+                data = {}
+                data['description'] = $(item).find('.description').html()
+                data['due_date'] = $(item).find('.due_date').html()
+                if($(item).find('.completed').html().trim() == 'Yes'){
+                    data['completed'] = 'True'
+                }
+                else {
+                    data['completed'] = 'False'
+                }
+                data['id'] = cur_id + "_edit"
+                
+                $(item).fadeOut(400, function(){
+                    $($.tmpl(item_form_template, data)).insertAfter($(prev)).fadeIn(400);
+                })
+            })
+
+            $('body').on('click', '.add_item', function(){
+                var item = $(this)
+                data = {}
+                data['description'] = ""
+                data['due_date'] = ""
+                data['completed'] = "None"
+                data['id'] = "None"
+                
+                $($.tmpl(item_form_template, data)).insertBefore($(item)).fadeIn(400);
+            })
+
+            $('body').on('click', '.add_list', function(){
+                var lists = $('.todo_lists')
+                console.log(lists);
+                data = {}
+                data['id'] = 'new_list'
+                var new_list = $.tmpl(list_form_template, data)
+                $(new_list).appendTo($(lists)).fadeIn(400);
+                $('html, body').animate({
+                    scrollTop: $(new_list).offset().top
+                }, 2000);
+            })
+
+            $('body').on('click', '.create_list', function(){
+                var lists = $('.todo_lists')
+                var list_form = $(this).parent()
+                var prev_div = $(list_form).prev()
+                var list_name = $(list_form).find("#list_name").val()
+
+                list_data = {}
+                list_data['items'] = []
+                list_data['name'] = list_name
+                var cookieValue = document.cookie.replace(/(?:(?:^|.*;\s*)Authorization\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+
+                $.ajax({
+                    url: '/todo/api/lists/',
+                    data: list_data,
+                    type: 'POST',
+                    dataType: 'json',
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader("Authorization", 'JWT '+ cookieValue);
+                    },
+                    success: function(data){
+                        console.log(data)
+                        $(list_form).fadeOut(400, function(){
+                            $.tmpl(legend_template, data).appendTo("#nav_list").fadeIn(400);
+                            $.tmpl(list_template, data).insertAfter($(prev_div)).fadeIn(400);
+                        })
+                        
+                    }
+                })
+            })
+
+            $('body').on('click', '.save', function(){
+                var item = $(this).parents().eq(4)
+                var cur_id = $(item).attr('id').split('_')[0]
+                data = {}
+                data['description'] = $(item).find('.description').val()
+                data['due_date'] = $(item).find('.due_date').val()
+                var list_id = $(item).parent().attr('id');
+                var prev = $(item).prev()
+                var cookieValue = document.cookie.replace(/(?:(?:^|.*;\s*)Authorization\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+                if(cur_id == "None"){  //post 
+                    $.ajax({
+                        url: '/todo/api/lists/' + list_id + '/items/',
+                        data: data,
+                        dataType: "json",
+                        type: "POST",
+                        beforeSend: function (xhr) {   //Include the bearer token in header
+                            xhr.setRequestHeader("Authorization", 'JWT '+ cookieValue);
+                        },
+                        success: function(data){
+                            $(item).fadeOut(400, function(){
+                                $(this).remove()
+                                $($.tmpl(item_template, data)).insertAfter($(prev)).fadeIn(400);
+                            })    
+                        } 
+                    })
+                }
+                else { //put
+                    if($(item).find('.check_complete').is(':checked')){
+                        data['completed'] = 'True'
+                    } else {
+                        data['completed'] = 'False'
+                    }
+                    data['list'] = list_id
+                    $.ajax({
+                        url: '/todo/api/items/' + cur_id + '/',
+                        data: data,
+                        dataType: "json",
+                        type: "PUT",
+                        beforeSend: function (xhr) {   
+                            xhr.setRequestHeader("Authorization", 'JWT '+ cookieValue);
+                        },
+                        success: function(data){
+                            $(item).fadeOut(400, function(){
+                                $(this).remove()
+                                $($.tmpl(item_template, data)).insertAfter($(prev)).fadeIn(400);
+                            })  
+                        } 
+                    })
+                }
+            })
+
+            $('body').on('click', '.discard', function(){
+                var item = $(this).parents().eq(4)
+                var old_item_id = $(item).attr('id').split('_')[0]
+                $(item).fadeOut(400, function(){
+                    $(this).remove();
+                    $('.item#' + old_item_id).fadeIn(400)
+                })
+            })
+
+            function filter_lists(text){
+                $('.todo_list').each(function(index, list){
+                    var list_name = $.trim($(this).find('label').html())
+                    if(list_name.startsWith(text) == true){
+                        $(this).show()
+                    } else{
+                        $(this).hide()
+                    }
+                })
+            }
+        });
+    </script>
+</html>

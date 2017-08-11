@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<!--
+This lesson introduces how to create an internal style sheet.
+-->
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>CSS Basics - Internal style sheets </title>
+
+    <!--
+    The section below defines an 'internal style sheet' local to this html page.
+    This is convenient for learning our lessons and we will use this for the most
+    part.
+
+    Everything defined inside <style> tags defines the css style rule that apply
+    to this document.
+    -->
+    <style type="text/css">
+    /*
+    This is a CSS comment, use them well to clarify your style rules.
+
+    A css rule consists of 2 parts:
+    - a selector which selects which html elements this rule applies to
+    - declarations -> a set of style rules that should be applied to the selected element
+    */
+
+    /*
+       The rule below uses a simple selector "p" which means the following rules
+       applies to all paragraph (p) elements in this page.
+
+       The declarations can modify any styles that apply to paragraphs and they
+       will override the default paragraph styles.
+
+       Note that regular autocomplete and ctrl + q (scroll the help popup for
+       full information) work in pycharm for css just like in regular python
+       files. So do use that.
+
+       Note how the paragraphs are rendered. Now  modify and add additional rules
+       so that this file looks like the image shown in previous lesson.
+    */
+    p
+    {
+        color: darkolivegreen; /* sets the color of the text */
+        font-family: Helvetica ; /* use Helvetica font */
+        font-size: large; /* use large size fonts */
+    }
+    h2 {
+        color:blueviolet;
+        text-align:center;
+    }
+    ol
+    {
+        color: orange;
+        list-style: none;
+        text-align: center;
+    }
+   </style>
+
+</head>
+<body>
+<h2> Lord of the Rings </h2>
+<p>
+    The Lord of the Rings is a film series consisting of three high fantasy
+    adventure films directed by Peter Jackson. They are based on the novel
+    The Lord of the Rings by J. R. R. Tolkien. The films are:
+</p>
+
+<ol>
+    <li>The Fellowship of the Ring (2001)</li>
+    <li>The Two Towers (2002)</li>
+    <li>The Return of the King (2003)</li>
+</ol>
+
+<p>
+Considered to be one of the biggest and most ambitious film projects ever
+    undertaken, with an overall budget of $281 million (some sources say $310
+    million-$330 million),[3] the entire project took eight years, with the filming
+    for all three films done simultaneously and entirely in New Zealand,
+    Jackson's native country.[4] Each film in the series also had special
+    extended editions released on DVD a year after their respective theatrical
+    releases. While the films follow the book's general storyline, they do omit
+    some of the novel's plot elements and include some additions to and
+    deviations from the source material.
+</p>
+</body>
+</html>

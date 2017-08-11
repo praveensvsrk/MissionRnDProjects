@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JQ test</title>
+    <style>
+        .toggle {
+            padding: 10px 15px 10px 15px;
+            color: blue;
+            background-color: red;
+            width: fit-content;
+            box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+            border-radius: 3px;
+            border: solid thin red;
+        }
+
+        .toggle:hover{
+            background-color: black;
+            color: aliceblue;
+            box-shadow: 5px 5px 5px rgba(0,0,0,0);
+        }
+
+        .toggle:active{
+            background-color: palevioletred;
+        }
+
+        .toggle:focus{
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+    <center>
+        <p class="heading"><b>Welcome</b></p>
+        <div class="container">
+            <div class="dummy">
+            <p>Div</p>
+            <button class="toggle">Click</button>
+            </div>
+        </div>
+    </center>
+</body>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script type="text/javascript">
+    var button = $('<button class="toggle">Click</button>');
+    // $('.dummy').append(button);
+    console.log($('.heading').html())
+    $('body').on('click', '.toggle', function(){
+        var div = $('<div class="dummy"><p>Div</p><button class="toggle">Click</button></div>')
+        $('.container').append(div);
+    })
+    
+</script>
+</html>

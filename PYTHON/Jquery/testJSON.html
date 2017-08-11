@@ -1,0 +1,125 @@
+<html>
+    <head>
+        <style>
+            .todo_list {
+                background-color: bisque;
+                padding: 20px;
+                width: 400px;
+                border-radius: 5px;
+                margin-bottom: 10px;
+            }
+            .item {
+                width: 360px;
+                background-color: azure;
+                padding: 5px 10px 5px 0px;
+                margin: 10px 20px 10px 10px;
+                border-radius: 5px;
+                border: solid thin transparent;
+            }
+
+            .item:hover {
+                border-color: red;
+            }
+
+            .list {
+                text-align: center;
+            }
+            
+            ul {
+                list-style: none;
+            }
+
+            .delete_btn {
+                float: right;
+                font-size: 20px;
+                outline: none;
+                background-color: red;
+                border: solid thin red;
+                border-radius: 2px;
+            }
+
+            .delete_btn:hover {
+                border-color: darkmagenta;
+            }
+
+            .delete_btn:focus {
+                opacity: 50%;
+            }
+
+        </style>
+
+    </head>
+
+    <body>
+        <div class="container">
+            <div class="todo_lists">
+                
+            </div>
+        </div>
+    </body>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="http://ajax.microsoft.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.get('templates//list_template.html', function(list_markup){
+                $.getJSON('./todoit.json', function(data){
+                    $.each(data, function(index, list){
+                        $.tmpl(list_markup, data[index]).appendTo( ".todo_lists" );
+                        $.get('templates//items_template.html', function(markup){
+                            var id = "#" + data[index].name
+                            $.tmpl(markup, data[index].items).appendTo(id);
+                        });
+                    })
+                    
+                });        
+            });
+            $('body').on('click', '.delete_btn', function(){
+                $(this).parent().remove()
+            })
+            // $.ajax({
+            //     accepts: {
+            //         mycustomtype: 'application/json'
+            //     },
+            //     url: 'http://localhost:8000/todo/lists/',
+                
+            //     // Instructions for how to deserialize a `mycustomtype`
+            //     // converters: {
+            //     //     'text mycustomtype': function(result) {
+            //     //     // Do Stuff
+            //     //     return newresult;
+            //     //     }
+            //     // },
+                
+            //     dataType: 'json',
+            //     success:function(data) {
+            //         console.log(data)
+            //     }
+            //     });
+
+            logindata = {"username": "praveen", "password": "praveen147"}
+            $.ajax({
+                accepts: {
+                    mycustomtype: 'application/json'
+                },
+                url: 'http://localhost:8000/todo/api-token-auth/',
+                type: 'POST',
+                data:logindata,
+                // Instructions for how to deserialize a `mycustomtype`
+                // converters: {
+                //     'text mycustomtype': function(result) {
+                //     // Do Stuff
+                //     return newresult;
+                //     }
+                // },
+                
+                dataType: 'json',
+                success:function(data) {
+                    console.log(data)
+                }
+            });
+
+            
+        });
+
+    </script>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<!--
+This topic about positioning elements on a page appears simple but it is very
+easy to get confused with the words :).
+
+References (read them before you start):
+http://vanseodesign.com/css/css-positioning/
+https://css-tricks.com/absolute-relative-fixed-positioining-how-do-they-differ/
+
+This lesson deals with basic usage of position. Thing to remember is
+- static is default positioning
+- relative position is relative to where the element would have been according
+to the standard box layout (and not relative to top of page or browser viewport)
+- fixed is absolute position in the visible portion of the browser
+- absolute is relative to the first non static parent (or body element by default)
+-->
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <!-- useful in development mode for incremental testing -->
+    <meta http-equiv="cache-control" content="no-cache">
+    <title>Understanding css position</title>
+    <style type="text/css">
+
+        /* adding a border to all elements so placement of elements is clear */
+        * {
+            border: thin solid blue;
+        }
+
+    /*
+    Add appropriate rules with position and other properties to come
+    up with the layout as shown in the image. In particular note the following:
+    - fixed position of commentary div
+    - the width of the paragraphs so that they don't intersect with the commentary
+    - the starting position of the ordered lists and position of the list elements
+    - all offsets are multiples of 10, so you can use ruler to find the closest values fast.
+    - note that width of the paragraph is commentary is different, which selector can
+      you use to get this behavior?
+    - After you are done with all this and your page is ready, move the browser
+    scrollbars, resize the window and see what happens.
+
+    It is a good idea to have pycharm and the browser side by side and keep
+    refreshing the page as you edit the rules.
+    */
+    #commentary {
+        position: fixed;
+        top:200px;
+        right: 0px;
+        width: 120px;
+        background-color: orange;
+    }
+
+    .heading {
+        position: relative;
+        left: 35%;
+    }
+
+    p {
+        width: 400px;
+    }
+
+    #commentary  p {
+        margin: 15px;
+        width: auto;
+    }
+
+    ol {
+        position: relative;
+        left: 20%;
+        list-style-position: inside;
+
+    }
+
+    ol li {
+        position:relative;
+        top: 10px;
+        left: 40px;
+
+    }
+
+    </style>
+
+</head>
+<body>
+
+<h2 class="heading"> Lord of the Rings </h2>
+<p>
+    The Lord of the Rings is a film series consisting of three high fantasy
+    adventure films directed by Peter Jackson. They are based on the novel
+    The Lord of the Rings by J. R. R. Tolkien. The films are:
+</p>
+
+<ol>
+    <li>The Fellowship of the Ring (2001)</li>
+    <li>The Two Towers (2002)</li>
+    <li>The Return of the King (2003)</li>
+</ol>
+
+<p>
+Considered to be one of the biggest and most ambitious film projects ever
+    undertaken, with an overall budget of $281 million (some sources say $310
+    million-$330 million),[3] the entire project took eight years, with the filming
+    for all three films done simultaneously and entirely in New Zealand,
+    Jackson's native country.
+</p>
+
+<h2 class="heading"> Related movies </h2>
+<p>
+    Seeing the success of movies, Peter thought that it was a good idea to make prequels to rake in
+    some more money. It resulted in a new movie series:
+</p>
+<ol>
+    <li>An Unexpected Journey (2012) </li>
+    <li>The Desolation of Smaug (2013) </li>
+    <li>The Battle of the Five Armies (2014) </li>
+</ol>
+
+<div id="commentary">
+    <p>
+    I really don't understand this craze about the LOTR and hobbit
+    </p>
+</div>
+
+<div id="summary">
+    <p>
+    These movies have been watched millions of times by now.
+    </p>
+</div>
+
+</body>
+</html>

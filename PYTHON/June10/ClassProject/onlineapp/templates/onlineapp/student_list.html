@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Students</title>
+    <style>
+        table {
+            width: 50%;
+            border: solid thin black;
+        }
+        td {
+            color: blue;
+            text-align: center;
+            padding: 5px;
+        }
+
+        h1 {
+            color: green;
+            font-style: bold;
+            padding: 20px;
+        }
+
+
+    </style>
+</head>
+<body>
+<center>
+    <h1>Students from {{ college }}</h1>
+    <table border="1">
+        <th>Student name</th>
+        <th>Marks</th>
+        {% for s in students %}
+            <tr>
+                <td>{{ s.name }}</td>
+                <td>{{ s.mocktest1__total }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+<center>
+</body>
+</html>

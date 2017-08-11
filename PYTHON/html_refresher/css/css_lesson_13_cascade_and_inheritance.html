@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<!--
+Inheritance and cascading are two fundamental properties. You have used them
+already without paying attention.
+
+Inheritance - refers to the processing of picking properties from the parent if
+not explicitly set on the child. Not all properties are inherited by default.
+For e.g. if you set font on an element, it makes sense that all text include child
+elements should inherit that font. It does not make sense to inherit width or
+border or padding from parent. The documentation specifies which properties are
+inherited by default. You can always force inheritance with "inherit" value on
+any property.
+
+Cascading - refers to the fact that styles of an element can cascade from many
+angles - the default browser style sheet, any user preferences, rules written
+in multiple style sheets, rules written inline etc. CSS uses specific rules to
+merge these properties and determine which value wins in case of conflict.
+
+You can clearly see this when you inspect an element in firebug. If the cascade
+results in no value for property for an element then an initial/default value is
+used for non-inherited properties and inherited from parent for inherited properties.
+
+References:
+For full details of conflict resolution see:
+
+http://www.w3.org/wiki/Inheritance_and_cascade
+http://www.w3.org/TR/css3-cascade/
+
+-->
+<head lang="en">
+    <meta charset="UTF-8">
+    <!-- useful in development mode for incremental testing -->
+    <meta http-equiv="cache-control" content="no-cache">
+    <title>Understanding inheritance and cascade</title>
+    <style type="text/css">
+        body {
+            font-family: Verdana;
+            font-size: 20px;
+        }
+
+        p {
+            font-family: "Lucida Grande";
+            font-size: 16px;
+        }
+
+        #one {
+            font-family: Arial;
+        }
+
+/*
+Answer the following using browser tools and web references. See both the style
+and computed tabs in firebug or chrome developer tools (comes with browser).
+
+Refer to the chrome user agent style sheet (the default style sheet) at
+http://trac.webkit.org/export/191495/trunk/Source/WebCore/css/html.css as well.
+Chrome forked from webkit so it might be a bit dated, but you can always find the
+current user agent style for an element using the google developer tools (ctrl + shift + I)
+
+1. what is the font-size in px of h1, what happens if you change font-size
+   of body to 25px. How did this happen? what is the exact css that makes this happen?
+
+2. what is font-family of paragraph with id one? why?
+
+3. what is font-family of paragraph with ide two? why?
+
+4. what is font-family of h2? why?
+
+5. What is the font-family of code? where did it come from? why did not get inherited from body?
+
+6. What is the font-size of code? where did it come from? why?
+
+*/
+    </style>
+</head>
+<body>
+    <div id="outer">
+        <h1> This is the main heading </h1>
+        <p id="one"> This is some text in paragraph one </p>
+        <p id="two"> This is some text in paragraph two </p>
+        <h2> This is a sub heading </h2>
+        <p id="three"> This is some text in paragraph one </p>
+        <p id="four"> This is some code below </p>
+        <pre>
+            <code>
+            def f():
+                print hello
+            </code>
+        </pre>
+    </div>
+</body>
+</html>

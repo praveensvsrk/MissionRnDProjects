@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<!--
+See the comments in the previous lesson.
+
+Some useful references:
+http://vanseodesign.com/css/css-positioning/
+https://css-tricks.com/absolute-relative-fixed-positioining-how-do-they-differ/
+
+note that absolute and fixed positions remove those elements from the normal
+flow and affect the positioning of the other elements (unlike relative).
+
+Solve this exercise using only position (absolute, fixed etc) and see what you
+learn in the process.
+-->
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <!-- useful in development mode for incremental testing -->
+    <meta http-equiv="cache-control" content="no-cache">
+    <title>Understanding css position</title>
+    <style type="text/css">
+
+        * {
+            border: thin solid blue;
+        }
+
+        /*
+        Look at the expected image for this lesson and add rules to layout the
+        content in that form. Note the following:
+        - 2 column layout - note the use of divs to apply style to whole collection
+        of elements.
+        - note the fixed position of commentary
+        - note the position of summary and what you have to do to place it there!
+        */
+
+        h1 {
+            background-color: green;
+        }
+
+        #container{
+            position: absolute;
+        }
+
+        div#lotr {
+            width: 260px;
+            position: relative;
+            background-color: burlywood;
+        }
+
+        div#hobbit {
+            width: 260px;
+            position: relative;
+            margin-left: 10px;
+            left:260px;
+            top: -475px;
+            background-color: orangered;
+        }
+
+        div#commentary {
+            position:relative;
+            background-color: chocolate;
+            left: 540px;
+            top: -630px;
+            width: 100px;
+            padding:25px;
+        }
+
+        div#summary {
+            position:relative;
+            top: -630px;
+        }
+
+
+    </style>
+
+</head>
+<body>
+<h1> LOTR and Hobbit </h1>
+
+<div id="container">
+
+<div id="lotr">
+<h2 class="heading"> Lord of the Rings </h2>
+<p>
+    The Lord of the Rings is a film series consisting of three high fantasy
+    adventure films directed by Peter Jackson. They are based on the novel
+    The Lord of the Rings by J. R. R. Tolkien. The films are:
+</p>
+
+<ol>
+    <li>The Fellowship of the Ring (2001)</li>
+    <li>The Two Towers (2002)</li>
+    <li>The Return of the King (2003)</li>
+</ol>
+
+<p>
+Considered to be one of the biggest and most ambitious film projects ever
+    undertaken, with an overall budget of $281 million (some sources say $310
+    million-$330 million),[3] the entire project took eight years, with the filming
+    for all three films done simultaneously and entirely in New Zealand,
+    Jackson's native country.
+</p>
+</div>
+<div id="hobbit">
+<h2> Hobbit </h2>
+<p>
+    Seeing the success of movies, Peter thought that it was a good idea to make prequels to rake in
+    some more money. It resulted in a new movie series:
+</p>
+<ol>
+    <li>An Unexpected Journey (2012) </li>
+    <li>The Desolation of Smaug (2013) </li>
+    <li>The Battle of the Five Armies (2014) </li>
+</ol>
+</div>
+
+<div id="commentary">
+    I really don't understand this craze about the LOTR and hobbit
+</div>
+
+<div id="summary">
+    These movies have been watched millions of times by now.
+</div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>CSS - selectors </title>
+    <style type="text/css">
+        /*
+        we have considered selectors that select a known html element in
+        previous lessons. But css allows you a very rich set of custom
+        selectors. For starts read this link before you do this lesson:
+
+        http://www.w3schools.com/css/css_selectors.asp
+        */
+
+        /* class selectors start with a . and id selectors start with # */
+        .heading {
+            color: darkviolet;
+            text-align: center;
+        }
+
+        #lotrmovies {
+            color: brown;
+            text-align: center;
+            font-size: 20px;
+            list-style: none;
+        }
+
+        #hobbitmovies {
+            color: mediumvioletred;
+            font-size: 20px;
+            list-style-image: url("../images/ladybug-bullet.jpg") ;
+        }
+
+
+
+        .lotrpara {
+            color: royalblue;
+            font-style:16px;
+            font-family: Arial;
+        }
+
+        .hobbitpara {
+            color: darkgreen;
+            font-family: Helvetica;
+            font-style: 17px;
+        }
+
+        /*
+        Exercise for this lesson:
+        1. declare new rules for 2 classes (lotrpara and hobbitpara) and give
+        them attributes so that it looks like the image shown
+         (Arial font 16px royalblue) for lotr paragraphs
+         (Helevetica 17px darkgreen) for the hobbit paragraph
+
+        2. Go down into the html below and add id and class attributes so that the result is
+           as shown in the image
+        */
+    </style>
+</head>
+<body>
+
+<h2 class="heading"> Lord of the Rings </h2>
+<p class="lotrpara">
+    The Lord of the Rings is a film series consisting of three high fantasy
+    adventure films directed by Peter Jackson. They are based on the novel
+    The Lord of the Rings by J. R. R. Tolkien. The films are:
+</p>
+
+<ol id="lotrmovies">
+    <li>The Fellowship of the Ring (2001)</li>
+    <li>The Two Towers (2002)</li>
+    <li>The Return of the King (2003)</li>
+</ol>
+
+<p class="lotrpara">
+Considered to be one of the biggest and most ambitious film projects ever
+    undertaken, with an overall budget of $281 million (some sources say $310
+    million-$330 million),[3] the entire project took eight years, with the filming
+    for all three films done simultaneously and entirely in New Zealand,
+    Jackson's native country.[4] Each film in the series also had special
+    extended editions released on DVD a year after their respective theatrical
+    releases. While the films follow the book's general storyline, they do omit
+    some of the novel's plot elements and include some additions to and
+    deviations from the source material.
+</p>
+
+<h2 class="heading"> Related movies </h2>
+<p class="hobbitpara">
+    Seeing the success of movies, Peter thought that it was a good idea to make prequels to rake in
+    some more money. It resulted in a new movie series:
+</p>
+<ol id="hobbitmovies">
+    <li>An Unexpected Journey (2012) </li>
+    <li>The Desolation of Smaug (2013) </li>
+    <li>The Battle of the Five Armies (2014) </li>
+</ol>
+
+</body>
+</html>
